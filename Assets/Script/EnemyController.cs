@@ -32,7 +32,7 @@ public class EnemyController : MonoBehaviour
     private Coroutine DamageCoroutine;
     private Coroutine MovementCoroutine;
 
-    //Events
+
     public UnityEvent<EnemyController> OnDamage;
     public UnityEvent<EnemyController> OnStopMoving;
     public UnityEvent<EnemyController> OnRetreat;
