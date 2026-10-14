@@ -215,12 +215,9 @@ public class EnemyController : MonoBehaviour
         if (direction == -Vector3.forward)
             moveSpeed = 2;
 
-        //Set Animator values
+        
         animator.SetFloat("InputMagnitude", (characterController.velocity.normalized.magnitude * direction.z) / (5 / moveSpeed), .2f, Time.deltaTime);
-        animator.SetBool("Strafe", (direction == Vector3.right || direction == Vector3.left));
-        animator.SetFloat("StrafeDirection", direction.normalized.x, .2f, Time.deltaTime);
-
-        //Don't do anything if isMoving is false
+       
         if (!isMoving)
             return;
 
@@ -260,7 +257,7 @@ public class EnemyController : MonoBehaviour
     private void Attack()
     {
         transform.DOMove(transform.position + (transform.forward / 1), .5f);
-        animator.SetTrigger("AirPunch");
+        animator.SetTrigger("Punch");
     }
 
     public void HitEvent()
