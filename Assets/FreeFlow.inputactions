@@ -28,7 +28,7 @@
                     "name": "Attack",
                     "type": "Button",
                     "id": "6ea8bfe7-fe85-4c24-a273-51a7a5ad22cd",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -336,7 +336,7 @@
                     "name": "Submit",
                     "type": "Button",
                     "id": "c79adc41-e955-4aeb-9277-a924dd60c1aa",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -345,7 +345,7 @@
                     "name": "Cancel",
                     "type": "Button",
                     "id": "45389da1-ebd2-4ca9-b782-68ff13306421",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false

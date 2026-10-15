@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
         float z;
         bool jumpPressed = false;
 
+
 #if ENABLE_INPUT_SYSTEM
         var delta = movement.ReadValue<Vector2>();
         x = delta.x;
@@ -62,6 +63,7 @@ public class PlayerController : MonoBehaviour
         jumpPressed = Input.GetButtonDown("Jump");
 #endif
 
+
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < 0)
@@ -69,7 +71,11 @@ public class PlayerController : MonoBehaviour
             velocity.y = -2f;
         }
 
+
+
         Vector3 move = transform.right * x + transform.forward * z;
+
+
 
         controller.Move(move * speed * Time.deltaTime);
 

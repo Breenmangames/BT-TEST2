@@ -87,12 +87,12 @@ public class BattleSystem : MonoBehaviour
     public void Attack(EnemyController target, float distance)
     {
         //Types of attack animation
-        attacks = new string[] { "AirKick", "AirKick2", "AirPunch", "AirKick3" };
+        attacks = new string[] { "Punch", "Kick",};
 
         //Attack nothing in case target is null
         if (target == null)
         {
-            AttackType("GroundPunch", .2f, null, 0);
+            AttackType("Punch", .2f, null, 0);
             return;
         }
 
@@ -105,7 +105,7 @@ public class BattleSystem : MonoBehaviour
         else
         {
             lockedTarget = null;
-            AttackType("GroundPunch", .2f, null, 0);
+            AttackType("Punch", .2f, null, 0);
         }
 
         
