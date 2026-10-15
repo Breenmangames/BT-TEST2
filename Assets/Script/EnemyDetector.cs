@@ -39,7 +39,7 @@ public class EnemyDetector : MonoBehaviour
 
         RaycastHit info;
 
-        if (Physics.SphereCast(transform.position, 3f, inputDirection, out info, 10, layerMask))
+        if (Physics.SphereCast(transform.position, 2f, inputDirection, out info, 10, layerMask))
         {
             if (info.collider.transform.GetComponent<EnemyController>().IsAttackable())
                 currentTarget = info.collider.transform.GetComponent<EnemyController>();
