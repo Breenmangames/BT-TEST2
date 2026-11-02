@@ -1,6 +1,6 @@
 {
     "version": 1,
-    "name": "FreeFlow",
+    "name": "PlayerAnim",
     "maps": [
         {
             "name": "Player",
