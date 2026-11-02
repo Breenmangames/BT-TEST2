@@ -31,37 +31,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8794999959109313039}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2534685772523891363
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6293934273918492562}
-  m_Layer: 0
-  m_Name: PunchPosition
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6293934273918492562
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2534685772523891363}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.07, y: 1.14, z: 0.32}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8794999959109313039}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2962601576669911212
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +192,7 @@ MonoBehaviour:
     ImpulseType: 1
     DissipationRate: 0.114
     RawSignal: {fileID: 0}
-    AmplitudeGain: 17.77325
+    AmplitudeGain: 311.5275
     FrequencyGain: 1
     RepeatMode: 0
     Randomize: 1
@@ -344,7 +313,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.9, z: 0}
+  m_Center: {x: 0, y: 1.9, z: 0}
 --- !u!114 &1493417405247574482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,9 +358,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InputScript
   moveAxis: {x: 0, y: 0}
   movementSpeed: 5
-  rotationSpeed: 0.25
-  fallSpeed: 0.2
-  acceleration: 1
+  rotationSpeed: 0.1
+  fallSpeed: 0.1
+  acceleration: 0.5
   blockRotationPlayer: 0
 --- !u!114 &653907484109754837
 MonoBehaviour:
@@ -405,10 +374,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bd7b871e4c41de458d433f239b6e5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleSystem
-  attackCooldown: 0
+  attackCooldown: 0.5
   isAttackingEnemy: 0
   isCountering: 0
-  punchPosition: {fileID: 0}
+  punchPosition: {fileID: 3811929734333649881}
   punchParticle: {fileID: 0}
   lastHitCamera: {fileID: 0}
   lastHitFocusObject: {fileID: 0}
@@ -485,7 +454,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 36
   m_CollisionDetection: 0
 --- !u!1 &5642332955421953038
 GameObject:
@@ -669,17 +638,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 2880238604600174329, guid: f3d0bf11749bcd74ba1b2378b968caf7, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 3221051666304285763, guid: f3d0bf11749bcd74ba1b2378b968caf7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 98.28
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3221051666304285763, guid: f3d0bf11749bcd74ba1b2378b968caf7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.59
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 3221051666304285763, guid: f3d0bf11749bcd74ba1b2378b968caf7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 89.86
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3221051666304285763, guid: f3d0bf11749bcd74ba1b2378b968caf7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -727,9 +700,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3221051666304285763, guid: f3d0bf11749bcd74ba1b2378b968caf7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4011702681395378773}
-    - targetCorrespondingSourceObject: {fileID: 3221051666304285763, guid: f3d0bf11749bcd74ba1b2378b968caf7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6293934273918492562}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3d0bf11749bcd74ba1b2378b968caf7, type: 3}
 --- !u!4 &8794999959109313039 stripped

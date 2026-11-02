@@ -87,7 +87,7 @@ public class BattleSystem : MonoBehaviour
     public void Attack(EnemyController target, float distance)
     {
         //Types of attack animation
-        attacks = new string[] { "Punch", "Kick",};
+        attacks = new string[] { "Punch", "Kick","Kick2","Kick3"};
 
         //Attack nothing in case target is null
         if (target == null)
