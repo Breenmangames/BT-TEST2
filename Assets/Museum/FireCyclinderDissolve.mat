@@ -39,7 +39,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Bottom_Colour_Height: 0.86
-    - _Dissolve: 0
+    - _Dissolve: 0.152
     - _Dissolve_Scaling: 26.08
     - _Distortion: 0.04
     - _Height: 1.33
@@ -50,7 +50,7 @@ Material:
     m_Colors:
     - _Color: {r: 0, g: 1, b: 0, a: 1}
     - _Dissolve_Tiling: {r: 0, g: 0.27, b: 0, a: 0}
-    - _Distortion_Speed: {r: -0.61, g: 1.34, b: 0, a: 0}
+    - _Distortion_Speed: {r: -6.78, g: -0.89, b: 0, a: 0}
     - _Distortion_Tiling: {r: -4.83, g: 2.1, b: 0, a: 0}
     - _Second_Color: {r: 0, g: 0.2030631, b: 0, a: 1}
   m_BuildTextureStacks: []
