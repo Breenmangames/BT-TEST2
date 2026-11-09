@@ -54,7 +54,7 @@ Material:
     - _Bottom_Colour_Height: 0.64
     - _Dissolve: 0
     - _Dissolve_Scaling: 25
-    - _Distortion: 0.342
+    - _Distortion: 0.277
     - _Height: 1.68
     - _Noise_Scale: 12.28
     - _QueueControl: 0
@@ -64,7 +64,7 @@ Material:
     m_Colors:
     - _Color: {r: 0.32704395, g: 0.30153862, b: 0.2951623, a: 1}
     - _Dissolve_Tiling: {r: -0.13, g: 3.56, b: 0, a: 0}
-    - _Distortion_Speed: {r: -1.41, g: -0.5, b: 0, a: 0}
+    - _Distortion_Speed: {r: -1.41, g: -0.18, b: 0, a: 0}
     - _Distortion_Tiling: {r: -8.79, g: 4.4, b: 0, a: 0}
     - _Second_Color: {r: 0.7599837, g: 0.74290407, b: 0.72413534, a: 1}
   m_BuildTextureStacks: []

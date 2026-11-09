@@ -38,9 +38,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Distortion: 0.303
+    - _Lightning_Height: 0.78
+    - _Lightning_Width: 0.08
+    - _Noise_Scale: 25
     - _QueueControl: 0
     - _QueueOffset: 0
-    m_Colors: []
+    m_Colors:
+    - _Color: {r: 0.030843295, g: 0.5400573, b: 3.2694435, a: 1}
+    - _Distortion_Speed: {r: 0, g: 0, b: 0, a: 0}
+    - _Tilling_Offset: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &7452741948270065616
