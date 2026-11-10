@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9196544555300031700}
   - component: {fileID: 7460631414479394851}
   - component: {fileID: 8155693748389593276}
+  - component: {fileID: 6192756916649831989}
   m_Layer: 7
   m_Name: EnemyTest
   m_TagString: Enemy
@@ -74,7 +75,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 12d4a4e7e3ea76e4fae3e192c3096001, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -106,9 +107,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 36
   m_CollisionDetection: 1
 --- !u!114 &8155693748389593276
 MonoBehaviour:
@@ -124,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   health: 3
   isPreparingAttack: 0
-  isMoving: 0
+  isMoving: 1
   isRetreating: 0
   isLockedTarget: 0
   isStunned: 0
@@ -139,6 +140,24 @@ MonoBehaviour:
   OnRetreat:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6192756916649831989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3907847938102709036}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 929ee33ef93650f4c8b211ab2fc1b3fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputScript
+  moveAxis: {x: 0, y: 0}
+  movementSpeed: 2
+  rotationSpeed: 0.1
+  fallSpeed: 0.2
+  acceleration: 1
+  blockRotationPlayer: 0
 --- !u!1001 &6250262572981165644
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -224,7 +243,8 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 9037116136674011665, guid: f3d0bf11749bcd74ba1b2378b968caf7, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3d0bf11749bcd74ba1b2378b968caf7, type: 3}
