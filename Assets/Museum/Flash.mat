@@ -24,7 +24,7 @@ Material:
   disabledShaderPasses:
   - MOTIONVECTORS
   - DepthOnly
-  m_LockedProperties: 
+  m_LockedProperties: _CastShadows
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -47,6 +47,8 @@ Material:
     - _Blend: 0
     - _CastShadows: 1
     - _Cull: 2
+    - _Distortion: 0
+    - _Distortion_Scale: 25
     - _DstBlend: 10
     - _DstBlendAlpha: 10
     - _Particle_Size: 0.643

@@ -37,7 +37,7 @@
                     "name": "Counter",
                     "type": "Button",
                     "id": "57084e2a-2b2c-412d-84b9-50fb21137a09",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false

@@ -296,6 +296,16 @@ public class EnemyController : MonoBehaviour
             StopCoroutine(MovementCoroutine);
     }
 
+    public void SetPivot(Vector3 newPivot)
+    {
+        Vector3 offset = transform.position - newPivot;
+        foreach (Transform child in transform)
+        {
+            child.position += offset;
+        }
+        transform.position = newPivot;
+    }
+
     #region Public Booleans
 
     public bool IsAttackable()

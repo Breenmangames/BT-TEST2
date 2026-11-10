@@ -52,15 +52,19 @@ Material:
     m_Ints: []
     m_Floats:
     - _Bottom_Colour_Height: 0.88
-    - _Distortion: 0.238
+    - _Dissolve: 0
+    - _Dissolve_Scaling: 25
+    - _Distortion: 0.18
     - _Height: 1.33
     - _Noise_Scale: 12
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _UV_Dissolve_W: 1
     m_Colors:
     - _Color: {r: 1, g: 0.8431373, b: 0, a: 1}
+    - _Dissolve_Tiling: {r: 0, g: 0, b: 0, a: 0}
     - _Distortion_Speed: {r: 0.12, g: -0.5, b: 0, a: 0}
-    - _Distortion_Tiling: {r: -8.79, g: 0.1, b: 0, a: 0}
+    - _Distortion_Tiling: {r: -8.59, g: 0.1, b: 0, a: 0}
     - _Second_Color: {r: 11.313707, g: 0.4297632, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

@@ -17,10 +17,10 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 2.653618
+  m_TransitionDuration: 1.6308386
   m_TransitionOffset: 0
-  m_ExitTime: 0.20817327
-  m_HasExitTime: 0
+  m_ExitTime: 0.01620311
+  m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -42,10 +42,10 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 1.5454814
+  m_TransitionDuration: 1.6007272
   m_TransitionOffset: 0
-  m_ExitTime: 0.14777388
-  m_HasExitTime: 0
+  m_ExitTime: 0.12869014
+  m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -130,6 +130,14 @@ BlendTree:
   m_Name: NonCombat
   m_Childs:
   - serializedVersion: 2
+    m_Motion: {fileID: -203655887218126122, guid: ac4730c3df1e12a48b2d0dd394e8aa11, type: 3}
+    m_Threshold: 0
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: InputMagnitude
+    m_Mirror: 0
+  - serializedVersion: 2
     m_Motion: {fileID: -203655887218126122, guid: be97ba26bb50ed24786466d798de9578, type: 3}
     m_Threshold: 0.23053892
     m_Position: {x: 0, y: 0}
@@ -145,18 +153,10 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: InputMagnitude
     m_Mirror: 0
-  - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: ac4730c3df1e12a48b2d0dd394e8aa11, type: 3}
-    m_Threshold: 0.7694611
-    m_Position: {x: 0, y: 0}
-    m_TimeScale: 1
-    m_CycleOffset: 0
-    m_DirectBlendParameter: InputMagnitude
-    m_Mirror: 0
   m_BlendParameter: InputMagnitude
   m_BlendParameterY: Blend
-  m_MinThreshold: 0.23053892
-  m_MaxThreshold: 0.7694611
+  m_MinThreshold: 0
+  m_MaxThreshold: 0.5
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0
@@ -430,12 +430,12 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 2.7775154
+  m_TransitionDuration: 1.771791
   m_TransitionOffset: 0
-  m_ExitTime: 0.13470367
-  m_HasExitTime: 0
+  m_ExitTime: 0.114576764
+  m_HasExitTime: 1
   m_HasFixedDuration: 1
-  m_InterruptionSource: 0
+  m_InterruptionSource: 2
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1101 &2752245562137070642
