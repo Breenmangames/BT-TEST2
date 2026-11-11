@@ -13,7 +13,21 @@ public class BattleSystem : MonoBehaviour
     private CinemachineImpulseSource impulseSource;
 
     [Header("Target")]
-    private EnemyController lockedTarget;
+    //private EnemyController lockedTarget;
+    private EnemyController _lockedTarget;
+    public EnemyController lockedTarget
+    {
+        get { return _lockedTarget; }
+        set
+        {
+            if (_lockedTarget != value)
+            {
+                Debug.Log($"LockedTarget changed from {(_lockedTarget?.name ?? "NULL")} to {(value?.name ?? "NULL")}");
+                Debug.Log($"Stack trace: {System.Environment.StackTrace}");
+            }
+            _lockedTarget = value;
+        }
+    }
 
     [Header("Combat Settings")]
     [SerializeField] private float attackCooldown;
@@ -50,48 +64,80 @@ public class BattleSystem : MonoBehaviour
         enemyDetector = GetComponentInChildren<EnemyDetector>();
         inputScript = GetComponent<InputScript>();
         impulseSource = GetComponentInChildren<CinemachineImpulseSource>();
+
+        if (enemyAI != null)
+        {
+            Debug.Log($"EnemyAI found. Alive enemies: {enemyAI.AliveEnemyCount()}");
+        }
+        else
+        {
+            Debug.LogError("EnemyAI not found in scene!");
+        }
     }
 
     //This function gets called whenever the player inputs the punch action
     void AttackCheck()
     {
-        if (isAttackingEnemy)
-            return;
 
-        //Check to see if the detection behavior has an enemy set
-        if (enemyDetector.CurrentTarget() == null)
+        Debug.Log($"=== AttackCheck Debug ===");
+        Debug.Log($"enemyDetector.CurrentTarget(): {(enemyDetector.CurrentTarget()?.name ?? "NULL")}");
+        Debug.Log($"enemyDetector.InputMagnitude(): {enemyDetector.InputMagnitude()}");
+        Debug.Log($"enemyAI.AliveEnemyCount(): {enemyAI.AliveEnemyCount()}");
+        Debug.Log($"enemyAI.AvailableEnemyCount(): {enemyAI.AvailableEnemyCount()}");
+
+        Debug.Log("=== ATTACKCHECK START ===");
+        Debug.Log($"isAttackingEnemy: {isAttackingEnemy}");
+
+        if (isAttackingEnemy)
         {
-            if (enemyAI.AliveEnemyCount() == 0)
-            {
-                Attack(null, 0);
-                return;
-            }
-            else
-            {
-                lockedTarget = enemyAI.RandomEnemy();
-            }
+            Debug.Log("BLOCKED: Already attacking");
+            return;
         }
 
-        //If the player is moving the movement input, use the "directional" detection to determine the enemy
-        if (enemyDetector.InputMagnitude() > .2f)
-            lockedTarget = enemyDetector.CurrentTarget();
+        Debug.Log($"BEFORE ASSIGNMENT - lockedTarget: {(lockedTarget?.name ?? "NULL")}");
 
-        //Extra check to see if the locked target was set
+        // Get target from detector
+        EnemyController detectorTarget = enemyDetector.CurrentTarget();
+        Debug.Log($"enemyDetector.CurrentTarget(): {(detectorTarget?.name ?? "NULL")}");
+
+        // Simple assignment
+        lockedTarget = detectorTarget;
+
+        Debug.Log($"AFTER ASSIGNMENT - lockedTarget: {(lockedTarget?.name ?? "NULL")}");
+
+        // If no target from detector, get random
         if (lockedTarget == null)
+        {
+            Debug.Log("No detector target, trying RandomEnemy()");
             lockedTarget = enemyAI.RandomEnemy();
+            Debug.Log($"RandomEnemy() returned: {(lockedTarget?.name ?? "NULL")}");
+        }
 
-        //AttackTarget
-        Attack(lockedTarget, TargetDistance(lockedTarget));
+        // Final check
+        if (lockedTarget == null)
+        {
+            Debug.LogWarning("FINAL CHECK: lockedTarget is NULL, aborting");
+            return;
+        }
+
+        Debug.Log($"About to call Attack() with target: {lockedTarget.name}");
+        float distance = TargetDistance(lockedTarget);
+        Debug.Log($"Distance to target: {distance}");
+
+        Attack(lockedTarget, distance);
+        Debug.Log("=== ATTACKCHECK END ===");
     }
 
     public void Attack(EnemyController target, float distance)
     {
+        Debug.Log($"@@@ ATTACK() CALLED - Target: {(target?.name ?? "NULL")}, Distance: {distance}");
         //Types of attack animation
-        attacks = new string[] { "Punch", "Kick","Kick2","Kick3"};
-
+        attacks = new string[] { "Kick","Kick2","Punch"};
+        
         //Attack nothing in case target is null
         if (target == null)
         {
+            Debug.Log("Target is null, doing Punch");
             AttackType("Punch", .2f, null, 0);
             return;
         }
@@ -115,6 +161,7 @@ public class BattleSystem : MonoBehaviour
 
     void AttackType(string attackTrigger, float cooldown, EnemyController target, float movementDuration)
     {
+        Debug.Log($"Setting trigger: {attackTrigger}");//testing why my attacks wont work
         animator.SetTrigger(attackTrigger);
 
         if (attackCoroutine != null)
@@ -133,12 +180,20 @@ public class BattleSystem : MonoBehaviour
 
         IEnumerator AttackCoroutine(float duration)
         {
+            Debug.Log($"AttackCoroutine started, duration: {duration}");
             inputScript.acceleration = 0;
             isAttackingEnemy = true;
             inputScript.enabled = false;
             yield return new WaitForSeconds(duration);
+
+            Debug.Log("AttackCoroutine: Setting isAttackingEnemy to false");
             isAttackingEnemy = false;
+            
+            
+            
             yield return new WaitForSeconds(.2f);
+
+            Debug.Log("AttackCoroutine: Re-enabling input");
             inputScript.enabled = true;
             LerpCharacterAcceleration();
         }
@@ -198,6 +253,12 @@ public class BattleSystem : MonoBehaviour
 
     float TargetDistance(EnemyController target)
     {
+        if (target == null)
+        {
+            Debug.LogWarning("TargetDistance called with null target!");
+            return 999f;
+        }
+            
         return Vector3.Distance(transform.position, target.transform.position);
     }
 
@@ -282,6 +343,11 @@ public class BattleSystem : MonoBehaviour
 
     private void OnAttack()
     {
+        
+        Debug.Log($"isAttackingEnemy status: {isAttackingEnemy}"); // ADD THIS
+
+       
+        Debug.Log("Attack button pressed!"); //why wont my attacks work :(
         AttackCheck();
     }
 
