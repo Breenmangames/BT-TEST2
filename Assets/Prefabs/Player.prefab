@@ -102,7 +102,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 25
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3555012916520742781
 GameObject:
@@ -189,10 +189,10 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     ImpulseDuration: 0.2
-    ImpulseType: 1
+    ImpulseType: 3
     DissipationRate: 0.114
-    RawSignal: {fileID: 0}
-    AmplitudeGain: 3
+    RawSignal: {fileID: 11400000, guid: b8c6fedac5afe2d469799aec96670ae3, type: 2}
+    AmplitudeGain: 6.671044
     FrequencyGain: 1
     RepeatMode: 0
     Randomize: 1
@@ -219,7 +219,7 @@ MonoBehaviour:
     DissipationMode: 2
     DissipationDistance: 5
     PropagationSpeed: 343
-  DefaultVelocity: {x: 0, y: -1, z: 0}
+  DefaultVelocity: {x: 0, y: 0, z: 0}
 --- !u!1 &3907847938102709036
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,6 +236,7 @@ GameObject:
   - component: {fileID: 7514138888592986140}
   - component: {fileID: 9196544555300031700}
   - component: {fileID: 7460631414479394851}
+  - component: {fileID: 4244343525084329029}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -344,8 +345,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bd7b871e4c41de458d433f239b6e5db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleSystem
-  attackCooldown: 0.5
-  isAttackingEnemy: 1
+  attackCooldown: 0.7
+  isAttackingEnemy: 0
   isCountering: 0
   punchPosition: {fileID: 3811929734333649881}
   punchParticle: {fileID: 0}
@@ -356,7 +357,19 @@ MonoBehaviour:
       m_Calls: []
   OnHit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2580254289927480251}
+        m_TargetAssemblyTypeName: Unity.Cinemachine.CinemachineImpulseSource, Unity.Cinemachine
+        m_MethodName: GenerateImpulse
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnCounterAttack:
     m_PersistentCalls:
       m_Calls: []
@@ -375,8 +388,8 @@ MonoBehaviour:
   trail: {fileID: 6295392253000816831}
   rightHand: {fileID: 0}
   leftHand: {fileID: 0}
-  rightFoot: {fileID: 0}
-  leftFoot: {fileID: 0}
+  rightFoot: {fileID: 8966758190704364532}
+  leftFoot: {fileID: 8836001730984545370}
 --- !u!95 &9196544555300031700
 Animator:
   serializedVersion: 7
@@ -426,6 +439,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 36
   m_CollisionDetection: 0
+--- !u!114 &4244343525084329029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3907847938102709036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c823e064a75fe724293d5f0399f4ebff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneDebugger
 --- !u!1 &5642332955421953038
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,7 +510,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 1405c9aaa9edda6438ddfebcf3a116a6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -960,5 +985,15 @@ PrefabInstance:
 --- !u!4 &8794999959109313039 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3221051666304285763, guid: f3d0bf11749bcd74ba1b2378b968caf7, type: 3}
+  m_PrefabInstance: {fileID: 6250262572981165644}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8836001730984545370 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3180293899036135958, guid: f3d0bf11749bcd74ba1b2378b968caf7, type: 3}
+  m_PrefabInstance: {fileID: 6250262572981165644}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8966758190704364532 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3084182483788633528, guid: f3d0bf11749bcd74ba1b2378b968caf7, type: 3}
   m_PrefabInstance: {fileID: 6250262572981165644}
   m_PrefabAsset: {fileID: 0}
