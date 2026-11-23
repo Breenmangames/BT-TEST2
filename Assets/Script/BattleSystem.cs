@@ -13,7 +13,7 @@ public class BattleSystem : MonoBehaviour
     private CinemachineImpulseSource impulseSource;
 
     [Header("Target")]
-    //private EnemyController lockedTarget;
+    
     private EnemyController _lockedTarget;
     public EnemyController lockedTarget
     {
@@ -23,7 +23,7 @@ public class BattleSystem : MonoBehaviour
             if (_lockedTarget != value)
             {
                 Debug.Log($"LockedTarget changed from {(_lockedTarget?.name ?? "NULL")} to {(value?.name ?? "NULL")}");
-                Debug.Log($"Stack trace: {System.Environment.StackTrace}");
+              
             }
             _lockedTarget = value;
         }
@@ -78,66 +78,52 @@ public class BattleSystem : MonoBehaviour
     //This function gets called whenever the player inputs the punch action
     void AttackCheck()
     {
-
-        Debug.Log($"=== AttackCheck Debug ===");
-        Debug.Log($"enemyDetector.CurrentTarget(): {(enemyDetector.CurrentTarget()?.name ?? "NULL")}");
-        Debug.Log($"enemyDetector.InputMagnitude(): {enemyDetector.InputMagnitude()}");
-        Debug.Log($"enemyAI.AliveEnemyCount(): {enemyAI.AliveEnemyCount()}");
-        Debug.Log($"enemyAI.AvailableEnemyCount(): {enemyAI.AvailableEnemyCount()}");
-
-        Debug.Log("=== ATTACKCHECK START ===");
-        Debug.Log($"isAttackingEnemy: {isAttackingEnemy}");
-
         if (isAttackingEnemy)
         {
-            Debug.Log("BLOCKED: Already attacking");
+            
             return;
         }
 
-        Debug.Log($"BEFORE ASSIGNMENT - lockedTarget: {(lockedTarget?.name ?? "NULL")}");
-
+       
         // Get target from detector
         EnemyController detectorTarget = enemyDetector.CurrentTarget();
-        Debug.Log($"enemyDetector.CurrentTarget(): {(detectorTarget?.name ?? "NULL")}");
+        
 
         // Simple assignment
         lockedTarget = detectorTarget;
 
-        Debug.Log($"AFTER ASSIGNMENT - lockedTarget: {(lockedTarget?.name ?? "NULL")}");
+        
 
         // If no target from detector, get random
         if (lockedTarget == null)
         {
-            Debug.Log("No detector target, trying RandomEnemy()");
+            
             lockedTarget = enemyAI.RandomEnemy();
-            Debug.Log($"RandomEnemy() returned: {(lockedTarget?.name ?? "NULL")}");
+           
         }
 
         // Final check
         if (lockedTarget == null)
         {
-            Debug.LogWarning("FINAL CHECK: lockedTarget is NULL, aborting");
             return;
         }
 
-        Debug.Log($"About to call Attack() with target: {lockedTarget.name}");
+       
         float distance = TargetDistance(lockedTarget);
-        Debug.Log($"Distance to target: {distance}");
-
         Attack(lockedTarget, distance);
-        Debug.Log("=== ATTACKCHECK END ===");
+        
     }
 
     public void Attack(EnemyController target, float distance)
     {
-        Debug.Log($"@@@ ATTACK() CALLED - Target: {(target?.name ?? "NULL")}, Distance: {distance}");
+        
         //Types of attack animation
         attacks = new string[] { "Kick","Kick2","Punch"};
         
         //Attack nothing in case target is null
         if (target == null)
         {
-            Debug.Log("Target is null, doing Punch");
+            
             AttackType("Punch", .2f, null, 0);
             return;
         }
@@ -161,14 +147,14 @@ public class BattleSystem : MonoBehaviour
 
     void AttackType(string attackTrigger, float cooldown, EnemyController target, float movementDuration)
     {
-        Debug.Log($"Setting trigger: {attackTrigger}");//testing why my attacks wont work
+        
         animator.SetTrigger(attackTrigger);
 
         if (attackCoroutine != null)
             StopCoroutine(attackCoroutine);
         attackCoroutine = StartCoroutine(AttackCoroutine(isLastHit() ? 1.5f : cooldown));
 
-        
+
         if (isLastHit())
             StartCoroutine(FinalBlowCoroutine());
 
@@ -178,22 +164,39 @@ public class BattleSystem : MonoBehaviour
         target.StopMoving();
         MoveTorwardsTarget(target, movementDuration);
 
+        // BACKUP SYSTEM: Schedule damage delivery after animation should connect
+        StartCoroutine(BackupDamageSystem(target, movementDuration));
+
+        IEnumerator BackupDamageSystem(EnemyController enemy, float delay)
+        {
+            // Wait for movement + a bit for the hit to land
+            yield return new WaitForSeconds(delay + 0.2f);
+
+            // Check if HitEvent was already called (enemy already damaged this frame)
+            if (enemy != null && enemy.IsAttackable() && lockedTarget == enemy)
+            {
+                
+                OnHit.Invoke(enemy);
+                punchParticle.PlayParticleAtPosition(punchPosition.position);
+            }
+        }
+
         IEnumerator AttackCoroutine(float duration)
         {
-            Debug.Log($"AttackCoroutine started, duration: {duration}");
+            
             inputScript.acceleration = 0;
             isAttackingEnemy = true;
             inputScript.enabled = false;
             yield return new WaitForSeconds(duration);
 
-            Debug.Log("AttackCoroutine: Setting isAttackingEnemy to false");
+            
             isAttackingEnemy = false;
-            
-            
-            
+
+
+
             yield return new WaitForSeconds(.2f);
 
-            Debug.Log("AttackCoroutine: Re-enabling input");
+            
             inputScript.enabled = true;
             LerpCharacterAcceleration();
         }
@@ -255,7 +258,7 @@ public class BattleSystem : MonoBehaviour
     {
         if (target == null)
         {
-            Debug.LogWarning("TargetDistance called with null target!");
+          
             return 999f;
         }
             
@@ -276,7 +279,18 @@ public class BattleSystem : MonoBehaviour
 
         OnHit.Invoke(lockedTarget);
 
+
+        punchParticle.PlayParticleAtPosition(punchPosition.position);
+    }
+
+    // Manual hit for collision-based damage
+    public void ManualHit(EnemyController enemy)
+    {
+        if (enemy == null || !enemy.IsAttackable())
+            return;
+
         
+        OnHit.Invoke(enemy);
         punchParticle.PlayParticleAtPosition(punchPosition.position);
     }
 
@@ -343,9 +357,6 @@ public class BattleSystem : MonoBehaviour
 
     private void OnAttack()
     {
-        
-        Debug.Log($"isAttackingEnemy status: {isAttackingEnemy}"); // ADD THIS
-
        
         Debug.Log("Attack button pressed!"); //why wont my attacks work :(
         AttackCheck();
