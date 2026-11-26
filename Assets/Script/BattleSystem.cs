@@ -116,14 +116,14 @@ public class BattleSystem : MonoBehaviour
 
     public void Attack(EnemyController target, float distance)
     {
-        
+
         //Types of attack animation
-        attacks = new string[] { "Kick","Kick2","Punch"};
-        
+        attacks = new string[] { "Kick", "Kick2", "Punch" };
+
         //Attack nothing in case target is null
         if (target == null)
         {
-            
+
             AttackType("Punch", .2f, null, 0);
             return;
         }
@@ -141,8 +141,14 @@ public class BattleSystem : MonoBehaviour
         }
 
         
-        impulseSource.ImpulseDefinition.AmplitudeGain = Mathf.Max(3, 1 * distance);
+        JumpToTrget(target, distance);
 
+    }
+
+    private void JumpToTrget(EnemyController target, float distance)
+    {
+        Debug.Log(impulseSource);
+        impulseSource.ImpulseDefinition.AmplitudeGain = Mathf.Max(3, 1 * distance);
     }
 
     void AttackType(string attackTrigger, float cooldown, EnemyController target, float movementDuration)
@@ -164,8 +170,8 @@ public class BattleSystem : MonoBehaviour
         target.StopMoving();
         MoveTorwardsTarget(target, movementDuration);
 
-        // BACKUP SYSTEM: Schedule damage delivery after animation should connect
-        StartCoroutine(BackupDamageSystem(target, movementDuration));
+        
+        StartCoroutine(BackupDamageSystem(target, movementDuration)); //attackCheck isnt working properly so this is a backup system to ensure damage is applied
 
         IEnumerator BackupDamageSystem(EnemyController enemy, float delay)
         {
@@ -215,7 +221,7 @@ public class BattleSystem : MonoBehaviour
     void MoveTorwardsTarget(EnemyController target, float duration)
     {
         OnTrajectory.Invoke(target);
-        transform.DOLookAt(target.transform.position, .2f);
+        transform.DOLookAt(target.transform.position, 2f);
         transform.DOMove(TargetOffset(target.transform), duration);
     }
 
@@ -263,6 +269,7 @@ public class BattleSystem : MonoBehaviour
         }
             
         return Vector3.Distance(transform.position, target.transform.position);
+        Debug.Log("Distance to target: " + Vector3.Distance(transform.position, target.transform.position));
     }
 
     public Vector3 TargetOffset(Transform target)
@@ -337,7 +344,7 @@ public class BattleSystem : MonoBehaviour
     void LerpCharacterAcceleration()
     {
         inputScript.acceleration = 0;
-        DOVirtual.Float(0, 1, .6f, ((acceleration) => inputScript.acceleration = acceleration));
+        DOVirtual.Float(1f, 0, .6f, ((acceleration) => inputScript.acceleration = acceleration));
     }
 
     bool isLastHit()
