@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 8bfe64c5205e7dd4db9797551a27639f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 36.955982
+      value: 17.291489
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8bfe64c5205e7dd4db9797551a27639f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00000036519987
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8bfe64c5205e7dd4db9797551a27639f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 97.026474
+      value: 23.339615
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8bfe64c5205e7dd4db9797551a27639f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8bfe64c5205e7dd4db9797551a27639f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8bfe64c5205e7dd4db9797551a27639f, type: 3}
       propertyPath: m_LocalRotation.z
@@ -51,6 +51,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8bfe64c5205e7dd4db9797551a27639f, type: 3}
       propertyPath: m_Name
       value: Floor_Dirt
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8bfe64c5205e7dd4db9797551a27639f, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
