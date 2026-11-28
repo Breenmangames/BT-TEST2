@@ -80,7 +80,7 @@ CharacterController:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -91,10 +91,10 @@ CharacterController:
   m_Height: 1.82
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 1
-  m_SkinWidth: 3.77
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0.01, y: 0.97, z: 0}
+  m_StepOffset: 0.17
+  m_SkinWidth: 0.05
+  m_MinMoveDistance: 1
+  m_Center: {x: 0.01, y: 0.89, z: 0}
 --- !u!114 &4776473382300606902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,10 +109,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InputScript
   moveAxis: {x: 0, y: 0}
   movementSpeed: 5
-  rotationSpeed: 0.3
-  fallSpeed: 0.2
+  rotationSpeed: 0.12
+  fallSpeed: 4
   acceleration: 1
-  blockRotationPlayer: 0
+  blockRotationPlayer: 1
 --- !u!114 &8817662826795437816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,19 +134,7 @@ MonoBehaviour:
   lastHitFocusObject: {fileID: 0}
   OnTrajectory:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11500000, guid: 689ba7dc710de17409991160df022b35, type: 3}
-        m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
-        m_MethodName: set_name
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnHit:
     m_PersistentCalls:
       m_Calls:
@@ -164,19 +152,7 @@ MonoBehaviour:
         m_CallState: 2
   OnCounterAttack:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11500000, guid: 689ba7dc710de17409991160df022b35, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!95 &8432542676963887268
 Animator:
   serializedVersion: 7
@@ -190,18 +166,11 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 82a82bda6073aa245b4779cb871d9db4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'upperarm.l'\n\tTransform 'upperleg.l'\n\tTransform
-    'upperleg.r'\n\tTransform 'hips'\n\tTransform 'upperarm.r'\n\tTransform 'lowerarm.r'\n\tTransform
-    'upperarm.l'\n\tTransform 'chest'\n\tTransform 'lowerarm.l'\n\tTransform 'lowerleg.r'\n\tand
-    more ...\n\tFrom animation clip 'Walking_A'\n\tFrom animation clip 'Running_A'\n\tFrom
-    animation clip 'Melee_1H_Attack_Jump_Chop'\n\tFrom animation clip 'Melee_1H_Attack_Slice_Diagonal'\n\tFrom
-    animation clip 'Melee_1H_Attack_Slice_Horizontal'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -250,7 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackTrails
   trail: {fileID: 2382881219910868610}
   rightHand: {fileID: 2986730188134181568}
-  leftHand: {fileID: 2986730188134181568}
+  leftHand: {fileID: 980679243806298969}
   rightFoot: {fileID: 3265442625543771917}
   leftFoot: {fileID: 3265442625543771917}
 --- !u!114 &1645270251634709666
@@ -347,7 +316,7 @@ TrailRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Time: 5
+  m_Time: 1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -387,17 +356,17 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.9339623, g: 0.074893214, b: 0.09778204, a: 1}
-      key1: {r: 0.5754717, g: 0.05700427, b: 0.05700427, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 1}
+      key0: {r: 0.07450977, g: 0.22739059, b: 0.93333334, a: 1}
+      key1: {r: 0.13560204, g: 0.20661199, b: 0.8264651, a: 1}
+      key2: {r: 0.058823537, g: 0.5764706, b: 0.51684433, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
-      ctime1: 47417
-      ctime2: 0
+      ctime1: 6746
+      ctime2: 47417
       ctime3: 0
       ctime4: 0
       ctime5: 0
@@ -413,7 +382,7 @@ TrailRenderer:
       atime7: 0
       m_Mode: 0
       m_ColorSpace: 0
-      m_NumColorKeys: 2
+      m_NumColorKeys: 3
       m_NumAlphaKeys: 3
     numCornerVertices: 0
     numCapVertices: 0
@@ -423,7 +392,7 @@ TrailRenderer:
     shadowBias: 0.5
     generateLightingData: 0
   m_MinVertexDistance: 0.1
-  m_Autodestruct: 0
+  m_Autodestruct: 1
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
 --- !u!1773428102 &7943871948482974890
@@ -435,11 +404,13 @@ ParentConstraint:
   m_GameObject: {fileID: 5248885146429961151}
   m_Enabled: 1
   serializedVersion: 2
-  m_Weight: 1
-  m_TranslationAtRest: {x: 0, y: 0, z: 0}
+  m_Weight: 0
+  m_TranslationAtRest: {x: 0, y: 0.1, z: 0}
   m_RotationAtRest: {x: 0, y: 0, z: 0}
-  m_TranslationOffsets: []
-  m_RotationOffsets: []
+  m_TranslationOffsets:
+  - {x: 0, y: 0, z: 0}
+  m_RotationOffsets:
+  - {x: 0, y: 0, z: 0}
   m_AffectTranslationX: 1
   m_AffectTranslationY: 1
   m_AffectTranslationZ: 1
@@ -448,7 +419,9 @@ ParentConstraint:
   m_AffectRotationZ: 1
   m_Active: 1
   m_IsLocked: 0
-  m_Sources: []
+  m_Sources:
+  - sourceTransform: {fileID: 0}
+    weight: 1
 --- !u!1 &6599804794536587352
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,6 +462,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8467276135833108517}
+  - component: {fileID: 7023554746068215675}
   m_Layer: 6
   m_Name: CinemachineImpulse
   m_TagString: Untagged
@@ -511,6 +485,59 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2471957320865350533}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7023554746068215675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6863936888468960955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineImpulseSource
+  ImpulseDefinition:
+    ImpulseChannel: 1
+    ImpulseShape: 2
+    CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    ImpulseDuration: 0.2
+    ImpulseType: 0
+    DissipationRate: 0.25
+    RawSignal: {fileID: 0}
+    AmplitudeGain: 37.90454
+    FrequencyGain: 1
+    RepeatMode: 0
+    Randomize: 1
+    TimeEnvelope:
+      AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      AttackTime: 0
+      SustainTime: 0.2
+      DecayTime: 0.7
+      ScaleWithImpact: 1
+      HoldForever: 0
+    ImpactRadius: 100
+    DirectionMode: 0
+    DissipationMode: 2
+    DissipationDistance: 100
+    PropagationSpeed: 343
+  DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!1 &6933929566401836833
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,11 +802,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 19dd90c4cd092064b8c7c83d46bbb5b8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5798346476938587194}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: -3771971891951071861, guid: 19dd90c4cd092064b8c7c83d46bbb5b8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4041677397976159167}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19dd90c4cd092064b8c7c83d46bbb5b8, type: 3}
+--- !u!4 &980679243806298969 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -6316153372302231753, guid: 19dd90c4cd092064b8c7c83d46bbb5b8, type: 3}
+  m_PrefabInstance: {fileID: 2721459965274776686}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2471957320865350533 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 19dd90c4cd092064b8c7c83d46bbb5b8, type: 3}
@@ -795,29 +824,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 618611283068121955, guid: 19dd90c4cd092064b8c7c83d46bbb5b8, type: 3}
   m_PrefabInstance: {fileID: 2721459965274776686}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7954433260369078757 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -3771971891951071861, guid: 19dd90c4cd092064b8c7c83d46bbb5b8, type: 3}
-  m_PrefabInstance: {fileID: 2721459965274776686}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &4041677397976159167
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7954433260369078757}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 1
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 0.7, y: 0.1, z: 0.1}
-  m_Center: {x: 0, y: 0, z: 0}

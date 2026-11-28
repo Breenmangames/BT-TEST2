@@ -24,6 +24,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private bool isStunned;
     [SerializeField] private bool isWaiting = true;
 
+
     [Header("Particles")]
     [SerializeField] private ParticleSystem counterParticle;
 
@@ -36,6 +37,10 @@ public class EnemyController : MonoBehaviour
     public UnityEvent<EnemyController> OnDamage;
     public UnityEvent<EnemyController> OnStopMoving;
     public UnityEvent<EnemyController> OnRetreat;
+
+    public UnityEvent<EnemyController> OnMove;
+    [SerializeField] private float deathRotationDuration = 0.5f;
+    [SerializeField] private Vector3 deathRotationOffset = new Vector3(90f, 0f, 0f);
 
     void Start()
     {
@@ -140,6 +145,8 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+ 
+
     void Death()
     {
         StopEnemyCoroutines();
@@ -148,8 +155,28 @@ public class EnemyController : MonoBehaviour
         characterController.enabled = false;
         animator.SetTrigger("Death");
         enemyAI.SetEnemyAvailiability(this, false);
+
+       
+        StartCoroutine(RotateOnDeath());
     }
 
+    private IEnumerator RotateOnDeath()
+    {
+        Quaternion startRotation = transform.rotation;
+        Quaternion targetRotation = startRotation * Quaternion.Euler(deathRotationOffset);
+
+        float elapsed = 0f;
+        while (elapsed < deathRotationDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / deathRotationDuration);
+
+            transform.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
+            yield return null;
+        }
+
+        transform.rotation = targetRotation;
+    }
     public void SetRetreat()
     {
         StopEnemyCoroutines();

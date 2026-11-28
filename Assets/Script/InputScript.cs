@@ -19,8 +19,8 @@ public class InputScript : MonoBehaviour
     [Header("Settings")]
     [SerializeField] float movementSpeed;
     [SerializeField] float rotationSpeed = 0.1f;
-    [SerializeField] float fallSpeed = .2f;
-    public float acceleration = 1;
+    [SerializeField] float fallSpeed = 1f;
+    public float acceleration = 2;
 
     [Header("Booleans")]
     [SerializeField] bool blockRotationPlayer;
@@ -41,7 +41,7 @@ public class InputScript : MonoBehaviour
         isGrounded = controller.isGrounded;
 
         if (isGrounded)
-            verticalVel -= 0;
+            verticalVel -= -.1f;
         else
             verticalVel -= 1;
 
@@ -51,7 +51,6 @@ public class InputScript : MonoBehaviour
 
     void PlayerMoveAndRotation()
     {
-        var camera = Camera.main;
         var forward = cam.transform.forward;
         var right = cam.transform.right;
 
@@ -63,16 +62,25 @@ public class InputScript : MonoBehaviour
 
         desiredMoveDirection = forward * moveAxis.y + right * moveAxis.x;
 
-        if (blockRotationPlayer == false)
+        if (!blockRotationPlayer)
         {
-            //Camera
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(desiredMoveDirection), rotationSpeed * acceleration);
-            controller.Move(desiredMoveDirection * Time.deltaTime * (movementSpeed * acceleration));
+            if (desiredMoveDirection.sqrMagnitude > 0f)
+            {
+                transform.rotation = Quaternion.Slerp(
+                    transform.rotation,
+                    Quaternion.LookRotation(desiredMoveDirection),
+                    rotationSpeed * acceleration);
+
+                controller.Move(
+                    desiredMoveDirection * Time.deltaTime * (movementSpeed * acceleration));
+            }
         }
         else
         {
-            //Strafe
-            controller.Move((transform.forward * moveAxis.y + transform.right * moveAxis.y) * Time.deltaTime * (movementSpeed * acceleration));
+            Vector3 strafeDirection =
+                transform.forward * moveAxis.y + transform.right * moveAxis.x;
+
+            controller.Move(strafeDirection * Time.deltaTime * (movementSpeed * acceleration));
         }
     }
 
@@ -94,19 +102,12 @@ public class InputScript : MonoBehaviour
 
     void InputMagnitude()
     {
-        //Calculate the Input Magnitude
-        float inputMagnitude = new Vector2(moveAxis.x, moveAxis.y).sqrMagnitude;
+        float inputMagnitude = moveAxis.magnitude;
 
-        //Physically move player
         if (inputMagnitude > 0.1f)
-        {
-            anim.SetFloat("InputMagnitude", inputMagnitude * acceleration, .1f, Time.deltaTime);
             PlayerMoveAndRotation();
-        }
-        else
-        {
-            anim.SetFloat("InputMagnitude", inputMagnitude * acceleration, .1f, Time.deltaTime);
-        }
+
+        anim.SetFloat("InputMagnitude", inputMagnitude * acceleration, 0.1f, Time.deltaTime);
     }
 
     #region Input

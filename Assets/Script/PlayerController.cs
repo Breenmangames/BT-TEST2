@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public CharacterController controller;
 
     public float speed = 12f;
-    public float gravity = -10f;
+    public float gravity = -12f;
     public float jumpHeight = 2f;
 
     public Transform groundCheck;
@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded && velocity.y < 0)
         {
-            velocity.y = -2f;
+            velocity.y = -.2f;
         }
 
 
@@ -79,13 +79,14 @@ public class PlayerController : MonoBehaviour
 
         controller.Move(move * speed * Time.deltaTime);
 
-        if (jumpPressed && isGrounded)
+        /*if (jumpPressed && isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            velocity.y = Mathf.Sqrt(jumpHeight * -.2f * gravity);
         }
 
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+    }*/
     }
 }
