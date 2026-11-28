@@ -40,13 +40,12 @@ public class InputScript : MonoBehaviour
 
         isGrounded = controller.isGrounded;
 
-        if (isGrounded)
-            verticalVel -= -.1f;
+        if (controller.isGrounded && verticalVel < 0f)
+            verticalVel = -2f;
         else
-            verticalVel -= 1;
+            verticalVel += Physics.gravity.y * Time.deltaTime;
 
-        moveVector = new Vector3(0, verticalVel * fallSpeed * Time.deltaTime, 0);
-        controller.Move(moveVector);
+        controller.Move(Vector3.up * verticalVel * fallSpeed * Time.deltaTime);
     }
 
     void PlayerMoveAndRotation()
@@ -71,8 +70,8 @@ public class InputScript : MonoBehaviour
                     Quaternion.LookRotation(desiredMoveDirection),
                     rotationSpeed * acceleration);
 
-                controller.Move(
-                    desiredMoveDirection * Time.deltaTime * (movementSpeed * acceleration));
+                controller.Move(desiredMoveDirection * Time.deltaTime * (movementSpeed * acceleration));
+               
             }
         }
         else
